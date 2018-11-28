@@ -1,0 +1,8 @@
+$DAprocess = Get-Process
+$question = read-host "Want to Exit?"
+while ($question -eq "no") {
+    foreach ($process in $DAprocess) {
+       $job = start-job -scriptblock {get-process.name}
+       receive-job -job $job
+    }
+}
